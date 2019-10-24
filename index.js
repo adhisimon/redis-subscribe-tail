@@ -12,6 +12,11 @@ if (!args.channel) {
 
 console.log('Creating redis client');
 const client = redis.createClient({ host: 'localhost' });
+
+client.on('subscribe', (channel, count) => {
+    console.log(`Channel ${channel} subscribed (count: ${count})`);
+});
+
 client.on('message', (channel, message) => {
     console.log(message);
 });
