@@ -20,8 +20,9 @@ client.on('subscribe', (channel, count) => {
 client.on('message', (channel, message) => {
     let prettyMessage = message;
     try {
+        const indent = args.multiline ? 2 : null;
         const obj = JSON.parse(message);
-        prettyMessage = JSON.colorStringify(obj);
+        prettyMessage = JSON.colorStringify(obj, null, indent);
     } catch (e) {
         console.log('Message is not a JSON');
     }
