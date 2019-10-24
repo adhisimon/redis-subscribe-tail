@@ -23,7 +23,7 @@ client.on('message', (channel, message) => {
         const obj = JSON.parse(message);
         prettyMessage = JSON.colorStringify(obj);
     } catch (e) {
-        //
+        console.log('Message is not a JSON');
     }
 
     console.log(prettyMessage);
