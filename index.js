@@ -12,6 +12,8 @@ if (!args.channel) {
     process.exit(0);
 }
 
+process.title = args.channel;
+
 console.log('Creating redis client');
 const client = redis.createClient({ host: 'localhost' });
 
