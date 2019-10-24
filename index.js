@@ -10,9 +10,11 @@ if (!args.channel) {
     process.exit(0);
 }
 
+console.log('Creating redis client');
 const client = redis.createClient({ host: 'localhost' });
 client.on('message', (channel, message) => {
     console.log(message);
 });
 
+console.log(`Subscribing ${args.channel}`);
 client.subscribe(args.channel);
