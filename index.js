@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 
-require('node-json-color-stringify');
+// require('node-json-color-stringify');
+const jclrz = require('json-colorz');
+
 const redis = require('redis');
 
 const args = require('args-parser')(process.argv);
@@ -18,16 +20,14 @@ client.on('subscribe', (channel, count) => {
 });
 
 client.on('message', (channel, message) => {
-    let prettyMessage = message;
     try {
-        const indent = args.multiline ? 2 : null;
         const obj = JSON.parse(message);
-        prettyMessage = JSON.colorStringify(obj, null, indent);
-    } catch (e) {
-        console.log('Message is not a JSON');
-    }
+        jclrz.level.show = args.multiline;
 
-    console.log(prettyMessage);
+        jclrz(obj)
+    } catch (e) {
+        console.log(message);
+    }
 });
 
 console.log(`Subscribing ${args.channel}`);
