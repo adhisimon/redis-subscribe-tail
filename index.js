@@ -24,7 +24,7 @@ client.on('message', (channel, message) => {
         const obj = JSON.parse(message);
         jclrz.level.show = args.multiline;
 
-        jclrz(obj)
+        jclrz(obj);
     } catch (e) {
         console.log(message);
     }
