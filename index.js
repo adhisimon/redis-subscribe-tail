@@ -8,13 +8,27 @@ const redis = require('redis');
 
 const args = require('args-parser')(process.argv);
 
+let alterBashTitleIdx = 0;
+
+function alterBashTitle(title) {
+    const titleTwice = `${title} -  ${title}`;
+    bashTitle(titleTwice.slice(alterBashTitleIdx, title.length));
+
+    alterBashTitleIdx += 1;
+    if (alterBashTitleIdx >= title.length) alterBashTitleIdx = 0;
+}
+
 if (!args.channel) {
     console.log('Please specified channel using --channel argument.');
     process.exit(0);
 }
 
 process.title = args.channel;
-bashTitle(args.channel);
+
+alterBashTitle(args.channel);
+setInterval(() => {
+    alterBashTitle(args.channel);
+}, 1000);
 
 console.log('Creating redis client');
 const client = redis.createClient({ host: 'localhost' });
