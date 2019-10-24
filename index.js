@@ -18,7 +18,15 @@ client.on('subscribe', (channel, count) => {
 });
 
 client.on('message', (channel, message) => {
-    console.log(message);
+    let prettyMessage = message;
+    try {
+        const obj = JSON.parse(message);
+        prettyMessage = JSON.colorStringify(obj);
+    } catch (e) {
+        //
+    }
+
+    console.log(prettyMessage);
 });
 
 console.log(`Subscribing ${args.channel}`);
