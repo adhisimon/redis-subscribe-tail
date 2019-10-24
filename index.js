@@ -2,6 +2,7 @@
 
 // require('node-json-color-stringify');
 const jclrz = require('json-colorz');
+const bashTitle = require('node-bash-title');
 
 const redis = require('redis');
 
@@ -13,6 +14,7 @@ if (!args.channel) {
 }
 
 process.title = args.channel;
+bashTitle(args.channel);
 
 console.log('Creating redis client');
 const client = redis.createClient({ host: 'localhost' });
