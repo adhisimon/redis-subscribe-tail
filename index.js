@@ -12,7 +12,7 @@ let alterBashTitleIdx = 0;
 
 function alterBashTitle(title) {
     const titleTwice = `${title} -  ${title}`;
-    bashTitle(titleTwice.slice(alterBashTitleIdx, title.length));
+    bashTitle(titleTwice.slice(alterBashTitleIdx, alterBashTitleIdx + title.length));
 
     alterBashTitleIdx += 1;
     if (alterBashTitleIdx >= title.length) alterBashTitleIdx = 0;
