@@ -29,6 +29,6 @@
     "args-parser": "^1.1.0",
     "json-colorz": "^0.2.7",
     "node-bash-title": "0.0.2",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   }
 }
