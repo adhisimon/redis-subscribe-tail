@@ -31,7 +31,13 @@ setInterval(() => {
 }, 1000);
 
 console.log('Creating redis client');
-const client = redis.createClient({ host: 'localhost' });
+const client = redis.createClient({
+    host: args.host || 'localhost',
+    port: Number(args.port) || 6379,
+    username: args.username || null,
+    password: args.password || null,
+    db: Number(args.db) || 0,
+});
 
 client.on('subscribe', (channel, count) => {
     console.log(`Channel ${channel} subscribed (count: ${count})`);
